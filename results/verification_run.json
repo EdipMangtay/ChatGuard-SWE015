@@ -1,0 +1,243 @@
+{
+  "models": [
+    {
+      "key": "tfidf",
+      "model": "TF-IDF + logistic regression",
+      "macro_f1": 0.9157541444038693,
+      "accuracy": 0.9499316005471956,
+      "size_bytes": 1329812,
+      "mean_ms": 0.207260955,
+      "p95_ms": 0.21643065,
+      "runs": 200,
+      "confusion": [
+        [
+          572,
+          42
+        ],
+        [
+          141,
+          2900
+        ]
+      ]
+    },
+    {
+      "key": "mlp",
+      "model": "Word2vec + feedforward",
+      "macro_f1": 0.7363552867383512,
+      "accuracy": 0.8238030095759233,
+      "size_bytes": 2170733,
+      "mean_ms": 0.034480205,
+      "p95_ms": 0.04584645,
+      "runs": 200,
+      "confusion": [
+        [
+          453,
+          161
+        ],
+        [
+          483,
+          2558
+        ]
+      ]
+    },
+    {
+      "key": "bert",
+      "model": "BERT Tiny FP32",
+      "macro_f1": 0.91766509781071,
+      "accuracy": 0.9507523939808481,
+      "size_bytes": 17792621,
+      "mean_ms": 0.466952865,
+      "p95_ms": 0.5361027,
+      "runs": 200,
+      "confusion": [
+        [
+          579,
+          35
+        ],
+        [
+          145,
+          2896
+        ]
+      ]
+    },
+    {
+      "key": "int8",
+      "model": "BERT Tiny INT8",
+      "macro_f1": 0.9175694476463878,
+      "accuracy": 0.9507523939808481,
+      "size_bytes": 4784506,
+      "mean_ms": 0.64367461,
+      "p95_ms": 0.7265479,
+      "runs": 200,
+      "confusion": [
+        [
+          578,
+          36
+        ],
+        [
+          144,
+          2897
+        ]
+      ]
+    }
+  ],
+  "manifest": {
+    "raw_rows": 24783,
+    "dataset_sha256": "fcb8bc7c68120ae4af04a5b9acd58585513ede11e1548ebf36a5c2040b6f6281",
+    "seed": 42,
+    "splits": {
+      "train": {
+        "total": 17056,
+        "clean": 2866,
+        "offensive": 14190
+      },
+      "validation": {
+        "total": 3655,
+        "clean": 614,
+        "offensive": 3041
+      },
+      "test": {
+        "total": 3655,
+        "clean": 614,
+        "offensive": 3041
+      }
+    },
+    "bert_repo": "google/bert_uncased_L-2_H-128_A-2",
+    "bert_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+    "threads": 4,
+    "quantization_engine": "PyTorch CPU (W8A32)",
+    "mlp_validation_macro_f1": [
+      0.6953755453343361,
+      0.6624702797475666,
+      0.6805881277574823,
+      0.7041411655297664,
+      0.6904738423796382,
+      0.6844279987665742,
+      0.6811897138043892,
+      0.7376434249350818,
+      0.7199914163235454,
+      0.7083998304419743,
+      0.6807691875311854,
+      0.7401361795848336,
+      0.6950379934642383,
+      0.7093872243147119,
+      0.7218858799277479,
+      0.7440496365597714,
+      0.7069709888390208,
+      0.7337322238008254
+    ],
+    "bert_validation_macro_f1": [
+      0.8855338734980969,
+      0.9060661620672903,
+      0.914423239598313
+    ],
+    "test_ids_sha256": "2c0affdc518962ddc4855d69fa91045c0e5c10e415f5fc8db628d89420ae3ca1"
+  },
+  "hardware": {
+    "cpu": "Apple M3 Pro",
+    "architecture": "arm64",
+    "os": "macOS-27.2.1-arm64-arm-64bit"
+  },
+  "benchmark": {
+    "threads": 2,
+    "engine": "PyTorch CPU (W8A32)",
+    "batch_size": 1,
+    "warmups_per_model": 25,
+    "latency_budget_ms": 50,
+    "runtime_versions": {
+      "python": "3.12.15",
+      "torch": "2.14.1",
+      "transformers": "5.20.2",
+      "scikit_learn": "1.9.1"
+    }
+  },
+  "live_int8": {
+    "runs": 200,
+    "mean_ms": 0.732175,
+    "p95_ms": 0.9062999999999999,
+    "max_ms": 1.265,
+    "over_budget": 0
+  },
+  "lexicon_macro_f1": 0.5443782143260867,
+  "fp32_int8_agreement": 0.999452804377565,
+  "examples": {
+    "tfidf": [
+      {
+        "message": "Good game, everyone. Let's try the left route next round.",
+        "label": "clean",
+        "confidence": 0.5868294082168207
+      },
+      {
+        "message": "You are a fukking idiot, uninstall the game.",
+        "label": "clean",
+        "confidence": 0.6512183662968236
+      },
+      {
+        "message": "I'm quoting the player who called me stupid so I can report the message.",
+        "label": "offensive",
+        "confidence": 0.6007682202620315
+      }
+    ],
+    "mlp": [
+      {
+        "message": "Good game, everyone. Let's try the left route next round.",
+        "label": "clean",
+        "confidence": 0.8200132846832275
+      },
+      {
+        "message": "You are a fukking idiot, uninstall the game.",
+        "label": "offensive",
+        "confidence": 0.5810912251472473
+      },
+      {
+        "message": "I'm quoting the player who called me stupid so I can report the message.",
+        "label": "offensive",
+        "confidence": 0.5127180814743042
+      }
+    ],
+    "bert": [
+      {
+        "message": "Good game, everyone. Let's try the left route next round.",
+        "label": "clean",
+        "confidence": 0.9724907279014587
+      },
+      {
+        "message": "You are a fukking idiot, uninstall the game.",
+        "label": "offensive",
+        "confidence": 0.9296421408653259
+      },
+      {
+        "message": "I'm quoting the player who called me stupid so I can report the message.",
+        "label": "clean",
+        "confidence": 0.6407852172851562
+      }
+    ],
+    "int8": [
+      {
+        "message": "Good game, everyone. Let's try the left route next round.",
+        "label": "clean",
+        "confidence": 0.9718995690345764
+      },
+      {
+        "message": "You are a fukking idiot, uninstall the game.",
+        "label": "offensive",
+        "confidence": 0.9337823987007141
+      },
+      {
+        "message": "I'm quoting the player who called me stupid so I can report the message.",
+        "label": "clean",
+        "confidence": 0.6446864008903503
+      }
+    ]
+  },
+  "errors": {
+    "false_positive": {
+      "id": "13711",
+      "confidence": 0.9810470938682556
+    },
+    "false_negative": {
+      "id": "14033",
+      "confidence": 0.9810796976089478
+    }
+  }
+}

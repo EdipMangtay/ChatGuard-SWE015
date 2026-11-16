@@ -1,0 +1,5 @@
+W1116 19:55:12.861000 5285 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+{"key": "tfidf", "model": "TF-IDF + logistic regression", "macro_f1": 0.9157541444038693, "accuracy": 0.9499316005471956, "size_bytes": 1329812, "mean_ms": 0.19294250000000002, "p95_ms": 0.21033895, "runs": 200, "confusion": [[572, 42], [141, 2900]]}
+{"key": "mlp", "model": "Word2vec + feedforward", "macro_f1": 0.7363552867383512, "accuracy": 0.8238030095759233, "size_bytes": 2170733, "mean_ms": 0.024161235, "p95_ms": 0.0255881, "runs": 200, "confusion": [[453, 161], [483, 2558]]}
+{"key": "bert", "model": "BERT Tiny FP32", "macro_f1": 0.91766509781071, "accuracy": 0.9507523939808481, "size_bytes": 17792621, "mean_ms": 0.46610979, "p95_ms": 0.5319806, "runs": 200, "confusion": [[579, 35], [145, 2896]]}
+{"key": "int8", "model": "BERT Tiny INT8", "macro_f1": 0.9175694476463878, "accuracy": 0.9507523939808481, "size_bytes": 4784506, "mean_ms": 0.64854855, "p95_ms": 0.7381246999999999, "runs": 200, "confusion": [[578, 36], [144, 2897]]}

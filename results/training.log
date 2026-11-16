@@ -1,0 +1,28 @@
+W1116 19:53:38.830000 4262 torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+TF-IDF fitted, split sizes 17056/3655/3655
+word2vec epoch 1 complete
+word2vec epoch 2 complete
+word2vec epoch 3 complete
+
+Loading weights:   0%|          | 0/39 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 39/39 [00:00<00:00, 37042.09it/s]
+[transformers] BertForSequenceClassification LOAD REPORT from: local pinned BERT snapshot
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.predictions.bias                       | UNEXPECTED | 
+classifier.weight                          | MISSING    | 
+classifier.bias                            | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+BERT epoch 1: validation macro-F1 0.8855
+BERT epoch 2: validation macro-F1 0.9061
+BERT epoch 3: validation macro-F1 0.9144
+Training and quantization complete

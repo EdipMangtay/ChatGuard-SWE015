@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ChatGuard · Moderation Lab</title>
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/chat.js" defer></script>
+</head>
+<body>
+<header class="header">
+  <div class="brand"><span class="mark" aria-hidden="true">CG</span> ChatGuard</div>
+  <span class="header-note">SWE015 <span>·</span> Real-time chat moderation</span>
+</header>
+<main>
+  <div class="intro">
+    <h1>Moderation Lab</h1>
+    <p>Send an English chat message to inspect the model's decision and response time.</p>
+  </div>
+  <div class="workspace">
+    <section class="chat" aria-labelledby="chat-title">
+      <div class="panel-head">
+        <div><h2 id="chat-title">Game chat</h2><p>Messages appear after moderation.</p></div>
+        <button type="button" id="clear" class="quiet">Clear chat</button>
+      </div>
+      <div id="chat-log" class="chat-log" role="log" aria-label="Moderated messages">
+        <p id="empty-chat" class="empty-chat">No messages yet</p>
+      </div>
+      <form id="composer" class="composer">
+        <label for="message">Message</label>
+        <div class="input-row">
+          <textarea id="message" rows="2" maxlength="600" required placeholder="Type a chat message…"></textarea>
+          <button id="send" type="submit">Send</button>
+        </div>
+        <div class="form-footer"><span id="error" role="alert"></span><span id="count">0 / 600</span></div>
+      </form>
+    </section>
+    <aside class="monitor" aria-labelledby="monitor-title">
+      <div class="panel-head"><div><h2 id="monitor-title">Model monitor</h2><p>Single-message CPU inference</p></div></div>
+      <div class="model-picker">
+        <label for="model">Active model</label>
+        <select id="model">
+          <option value="int8" selected>BERT Tiny INT8</option>
+          <option value="bert">BERT Tiny FP32</option>
+          <option value="mlp">Word2vec + feedforward</option>
+          <option value="tfidf">TF-IDF + logistic regression</option>
+        </select>
+      </div>
+      <div class="timeline">
+        <h3>Response log</h3>
+        <div class="table-wrap"><table>
+          <thead><tr><th scope="col">Message</th><th scope="col">Model</th><th scope="col">Time</th></tr></thead>
+          <tbody id="timings"></tbody>
+        </table></div>
+        <p id="empty-timing" class="muted">Timing appears after the first message.</p>
+      </div>
+    </aside>
+  </div>
+</main>
+</body>
+</html>
